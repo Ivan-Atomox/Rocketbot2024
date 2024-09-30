@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"
+      integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+    <link
+      rel="stylesheet"
+      href="../bower_components/components-font-awesome/css/all.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Document</title>
+    <style>
+      body {
+        overflow: hidden;
+        font-family: "Muli", sans-serif;
+      }
+
+      .can-click {
+        cursor: pointer;
+      }
+
+      .border-left {
+        border-left: 1px solid #dee2e6 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-2 text-center" title="Git">
+        <i class="fas fa-solid fa-code-branch"></i>
+        <span id="gitBranch"></span>
+        <small id="gitStatusLength" class="text-info"> </small>
+        <small id="gitPush" class="text-success"> </small>
+        <small id="refreshGit" class="float-end can-click">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </small>
+      </div>
+
+      <div id="pathContainer" class="col-8 border-left text-center">
+        <i class="fas fa-solid fa-folder"></i>
+        <div id="dbFolder" class="d-inline"></div>
+        <i id="copyPathIcon" class="fas fa-solid fa-copy can-click"></i>
+      </div>
+
+      <div class="col-1 border-left text-center">
+        <i class="fas fa-solid fa-code"></i>
+        <small id="numberCommands"> </small>
+      </div>
+
+      <div id="alertsContainer" class="col-1 border-left text-center can-click">
+        <span>
+          <i class="fas fa-solid fa-exclamation-triangle"></i>
+          <span id="warningSpan"> </span>
+        </span>
+        <span>
+          <i class="fas fa-solid fa-times-circle"></i>
+          <span id="dangerSpan"> </span>
+        </span>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    const getCommandByParamSearch = function (
+      commands,
+      dataToSearch,
+      setdata,
+      iterable
+    ) {
+      const iterable_ = [];
+      const search = function (commands, dataToSearch) {
+        let ret, tmp_;
+        for (let c = 0; c < commands.length; c++) {
+          const param = commands[c];
+          ret = false;
+          if (eval(dataToSearch)) {
+            if (setdata) {
+              commands[c] = setdata;
+            }
+            ret = commands[c];
+
+            if (!iterable) {
+              return ret;
+            }
+          }
+          if (commands[c].children) {
+            tmp_ = search(commands[c].children, dataToSearch);
+            if (tmp_) {
+              ret = tmp_;
+            }
+            if (!iterable) {
+              return ret;
+            }
+          }
+          if (commands[c].else) {
+            tmp_ = search(commands[c].else, dataToSearch);
+            if (tmp_) {
+              ret = tmp_;
+            }
+            if (!iterable) {
+              return ret;
+            }
+          }
+          if (iterable) {
+            if (ret) {
+              iterable_.push(ret);
+            }
+          }
+        }
+      };
+      const re_ = search(commands, dataToSearch);
+      if (iterable && iterable_.length > 0) {
+        return iterable_;
+      }
+
+      return re_;
+    };
+
+    const getStatistics = function (project) {
+      // Commands disabled
+      const dis_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['disabled']==true",
+          null,
+          true
+        ) || [];
+      // Commands father alert
+      const alert_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father']=='alert' ",
+          null,
+          true
+        ) || [];
+      // Command father IF whth command empty
+      const if_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father']=='evaluateIf' && param['command']==''",
+          null,
+          true
+        ) || [];
+      // Command father FOR whth command empty
+      const for_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father']=='for' && (!param['command'].includes('iterable') || !param['var'])  ",
+          null,
+          true
+        ) || [];
+      // Command father evaluatewhile whth command empty
+      const while_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father']=='evaluatewhile' && param['command']==''",
+          null,
+          true
+        ) || [];
+      // Commands whithout command params
+      let commands_ =
+        getCommandByParamSearch(
+          project.commands,
+          "!param['command']  && !param['option']",
+          null,
+          true
+        ) || [];
+      // wait command longer than 5 secs
+      const wait_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father'].toLowerCase()=='wait' && param['command'] > 5",
+          null,
+          true
+        ) || [];
+      //command either with father execPython or execScriptPython
+      const python_ =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father'].toLowerCase()=='execpython' || param['father'].toLowerCase()=='execscriptpython' ",
+          null,
+          true
+        ) || [];
+
+      const if_danger =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father'].toLowerCase()=='evaluateif' && (!param['children'] || param['children'].length == 0)",
+          null,
+          true
+        ) || [];
+      const open_browser =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father'].toLowerCase()=='use' || param['father'].toLowerCase()=='openbrowser' ",
+          null,
+          true
+        )?.length || 0;
+      const close_browser =
+        getCommandByParamSearch(
+          project.commands,
+          "param['father'].toLowerCase()=='killdriver' ",
+          null,
+          true
+        )?.length || 0;
+      const open_browser_warning = open_browser - close_browser;
+      const total_ =
+        getCommandByParamSearch(project.commands, "param['father']", null, true)
+          ?.length || 0;
+
+      //python_ exceeds 50% of the total commands
+      python_over_50_percent = python_.length > total_ / 2;
+
+      const commands_data = {
+        total: total_,
+        disabled: dis_.length,
+        warning_by: {
+          python_over_50_percent,
+          command_porcent_disabled: Math.round((dis_.length * 100) / total_),
+          alerts_command: alert_.length,
+          wait_list:
+            wait_.map((item) => {
+              return {
+                id: item.id,
+                line: item.line || 0,
+              };
+            }) || [],
+          alert_list:
+            alert_.map((item) => {
+              return {
+                id: item.id,
+                line: item.line || 0,
+              };
+            }) || [],
+          commands_without_command: commands_.length,
+          open_browser_warning,
+          open_browser,
+          close_browser,
+        },
+        danger_by: {
+          if_param_empty: if_?.length || 0,
+          if_empty: if_danger?.length || 0,
+          for_param_empty: for_?.length || 0,
+          while_param_empty: while_?.length || 0,
+          if_danger_list:
+            if_danger?.map((item) => {
+              return {
+                id: item.id,
+                line: item.line || 0,
+              };
+            }) || [],
+
+          if_param_empty_list:
+            if_?.map((item) => {
+              return {
+                id: item.id,
+                line: item.line || 0,
+              };
+            }) || [],
+          for_param_empty_list:
+            for_?.map((item) => {
+              return {
+                id: item.id,
+                line: item.line || 0,
+              };
+            }) || [],
+          while_param_empty_list:
+            while_?.map((item) => {
+              return {
+                id: item.id,
+                line: item.line || 0,
+              };
+            }) || [],
+        },
+      };
+      dis_, alert_, if_, for_, while_, total_, (commands_ = null);
+      return commands_data;
+    };
+    //al reves el intercambio de mensajes
+
+    const reloadGit = (urlPort, dbPath) => {
+      fetch("http://localhost:" + urlPort + "/gitstatus/" + dbPath)
+        .then((response) => response.json())
+        .then((data) => {
+          let push = 0;
+          try {
+            push = data.log.split("\n").length - 1;
+          } catch (e) {
+            push = 0;
+          }
+
+          const gitBranch = document.getElementById("gitBranch");
+          gitBranch.innerHTML = data?.current_branch || "";
+
+          const gitStatusLength = document.getElementById("gitStatusLength");
+          gitStatusLength.innerHTML =
+            data?.git_status?.length > 0 ? "* " + data?.git_status?.length : "";
+
+          const gitPush = document.getElementById("gitPush");
+          if (push > 0) {
+            gitPush.innerHTML =
+              '<i class="fas fa-solid fa-arrow-up"></i>' + push;
+          }
+        });
+    };
+
+    const setAnalytics = (robot) => {
+      const MAX_RECOMMENDED_WARNING = 50;
+      const MAX_RECOMMENDED_DANGER = 100;
+
+      const STATISTICS = getStatistics(robot);
+
+      const COMMANDS = STATISTICS.total || 0;
+      const NUMBER_COMMANDS = document.getElementById("numberCommands");
+      NUMBER_COMMANDS.innerHTML = COMMANDS;
+
+      const excessCommandsWarning =
+        COMMANDS >= MAX_RECOMMENDED_WARNING &&
+        COMMANDS < MAX_RECOMMENDED_DANGER;
+      const excessCommandsDanger = COMMANDS >= MAX_RECOMMENDED_DANGER;
+
+      let ANALYTICS = {
+        danger_by: {
+          for_param_empty_list: STATISTICS.danger_by.for_param_empty_list,
+          if_danger_list: STATISTICS.danger_by.if_danger_list,
+          if_param_empty_list: STATISTICS.danger_by.if_param_empty_list,
+          while_param_empty_list: STATISTICS.danger_by.while_param_empty_list,
+          excess_commands: excessCommandsDanger,
+        },
+        warning_by: {
+          python_over_50_percent: STATISTICS.warning_by.python_over_50_percent,
+          alert_list: STATISTICS.warning_by.alert_list,
+          wait_list: STATISTICS.warning_by.wait_list,
+          excess_commands: excessCommandsWarning,
+        },
+      };
+
+      let danger =
+        ANALYTICS.danger_by.for_param_empty_list.length +
+        ANALYTICS.danger_by.if_param_empty_list.length +
+        ANALYTICS.danger_by.while_param_empty_list.length +
+        ANALYTICS.danger_by.if_danger_list.length +
+        (excessCommandsDanger ? 1 : 0);
+
+      const DANGER_SPAN = document.getElementById("dangerSpan");
+      DANGER_SPAN.innerHTML = danger;
+
+      let warning =
+        ANALYTICS.warning_by.alert_list.length +
+        ANALYTICS.warning_by.wait_list.length +
+        (excessCommandsWarning ? 1 : 0) +
+        (ANALYTICS.warning_by.python_over_50_percent ? 1 : 0);
+
+      const WARNING_SPAN = document.getElementById("warningSpan");
+      WARNING_SPAN.innerHTML = warning;
+      parent.postMessage({ type: "setAnalytics", data: ANALYTICS }, "*");
+    };
+
+    const onLoad = () => {
+      let urlPort;
+      let dbPath;
+      let folder;
+
+      parent.postMessage({ type: "getPortAndPath" }, "*");
+      parent.postMessage({ type: "getDbFolder" }, "*");
+      parent.postMessage({ type: "getRobot" }, "*");
+      setInterval(() => {
+        parent.postMessage({ type: "getRobot" }, "*");
+      }, 5000);
+
+      const COPY_PATH_ICON = document.getElementById("copyPathIcon");
+      COPY_PATH_ICON.addEventListener("click", () => {
+        const dbFolder = document.getElementById("dbFolder");
+        navigator.clipboard.writeText(dbFolder?.innerHTML || "");
+        const COPIED = document.createElement("span");
+        COPIED.innerHTML = "Copied!";
+        COPIED.style.color = "green";
+        const PATH_CONTAINER = document.getElementById("pathContainer");
+        PATH_CONTAINER.appendChild(COPIED);
+        setTimeout(() => {
+          COPIED.remove();
+        }, 2000);
+      });
+
+      const eventMethod = window.addEventListener
+        ? "addEventListener"
+        : "attachEvent";
+      const eventer = window[eventMethod];
+      const messageEvent =
+        eventMethod === "attachEvent" ? "onmessage" : "message";
+
+      window.addEventListener(messageEvent, function (event) {
+        if (event.data && event.data.event === "getPortAndPath") {
+          urlPort = event.data?.port;
+          dbPath = event.data?.path;
+          console.log(urlPort, dbPath);
+          reloadGit(urlPort, dbPath);
+        } else if (event.data && event.data.event === "getRobot") {
+          setAnalytics(event.data.data);
+        } else if (event.data && event.data.event === "getDbFolder") {
+          folder = event.data?.dbFolder?.db;
+          const dbFolder = document.getElementById("dbFolder");
+          dbFolder.innerHTML = folder;
+        }
+      });
+
+      const refreshGit = document.getElementById("refreshGit");
+      refreshGit.addEventListener("click", () => {
+        reloadGit(urlPort, dbPath);
+        parent.postMessage({ type: "getRobot" }, "*");
+      });
+
+      const ALERTS_CONTAINER = document.getElementById("alertsContainer");
+      ALERTS_CONTAINER.addEventListener("click", () => {
+        parent.postMessage({ type: "openCommandsAlertWindow" }, "*");
+      });
+    };
+
+    document.addEventListener("DOMContentLoaded", onLoad);
+  </script>
+</html>

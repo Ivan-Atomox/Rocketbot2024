@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote Desktop Helper</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- Fonts Awesome -->
+  <link rel="stylesheet" href="/bower_components/components-font-awesome/css/all.css" />
+  <link rel="stylesheet" href="/styles/main.css">
+<style>
+  h6 {
+    font-size: 12px;
+  }
+  .red {
+    color: #BC0017;
+  }
+  .yellow {
+    color: #F7B500;
+  }
+  .green {
+    color: #23CE6B;
+  }
+  .gray {
+    color: #4f4f4f;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+  <div id="app">
+    <div class="p-2">
+      <img src="data:image/png;base64,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" class="center">
+      <br>
+      <h4 style="display: flex; justify-content: center; text-align: center">
+        Remote Desktop Helper
+      </h4>
+      
+      <small style="display: flex; justify-content: center; text-align: center">Create a .rdp file to acces to a Remote Desktop</small>
+    </div>
+    
+    <hr class="hr-rocket">
+    <div class="p-2 mb-4 pb-4 scroll-y">
+      <h5><em class="fa fa-cogs"></em> Config RDP Credentials </h5>
+      <div class="p-2 pb-5 mb-5">
+        <div class="form-group">
+          <label class="m-0">IP</label>
+          <input class="form-control form-control-sm" v-model="ip">
+          <h6>Address of the server. Default: 127.0.0.1 (Local)</h6>
+        </div>
+        <div class="form-group">
+          <label class="m-0">User</label>
+          <input class="form-control form-control-sm" v-model="username">
+          <h6>User to connect to the server</h6>
+        </div>
+        <div class="form-group">
+          <label class="m-0">Password</label>
+          <input type="password" class="form-control form-control-sm" v-model="password">
+          <h6>Password to connect to the server</h6>
+        </div>
+        <div class="form-group">
+          <label class="m-0">Folder Path</label>
+          <input class="form-control form-control-sm" v-model="path">
+          <button type="button" class="btn btn-info btn-sm" @click="getFolder" class="btn">Search</button>
+          <h6>Folder where the RDP file will be saved</h6>
+        </div>
+        <div class="form-group">
+          <label class="m-0">Filename</label>
+          <input class="form-control form-control-sm" v-model="filename">
+          <h6>Name for the RDP file</h6>
+        </div>
+        <div class="form-group">
+          <label class="m-0">Mode</label>
+          <select class="form-control form-control-sm" v-model="mode">
+            <option value="1">Window</option>
+            <option value="2">Full screen</option>
+          </select>
+          <h6>Default: Full screen</h6>
+        </div>
+        <div class="form-group">
+          <label class="m-0">Width and Height</label>
+          <input class="form-control form-control-sm" v-model="wh" value="none">
+          <h6>Use it when Mode = Window. (Eg: 800,600)</h6>
+        </div>
+        <button @click="save" class="btn btn-success"><em class="fa fa-save"></em> Save</button>
+        <hr>
+      </div>
+  
+  <script src="/rdphelper/lodash.min.js"></script>
+  <script src="/rdphelper/vue.min.js"></script>
+  <script>
+    
+    var app = new Vue({
+      el: "#app",
+      data: {
+        viewCondfig:false,
+        loading: false,
+        username:"",
+        password:"",
+        ip:"",
+        path:"",
+        filename:"",
+        mode:"",
+        wh:"",
+      },
+      methods: {     
+        get(){
+          if(this.server.length < 5){
+            this.viewCondfig = true;
+            return;
+          }
+          var data = new FormData();
+          data.append("username",this.username);
+          data.append("password",this.password);
+          data.append("ip",this.ip);
+          data.append("path",this.path);
+          data.append("filename",this.filename);
+          data.append("mode",this.mode);
+          data.append("wh", this.wh);   
+          this.loading = true;
+          fetch("/rdphelper/get",
+          {
+            method: "GET",
+            body: data
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            this.projects = data;
+            this.loading = false;
+          });
+        },
+        getFolder(){
+          fetch("../getfolder", {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+          })
+          .then(response => response.text())
+          .then(data => {
+            this.path = data
+          }),
+          console.log(this.path);
+        },
+        save(){
+          var data = new FormData();
+          data.append("username",this.username);
+          data.append("password",this.password);
+          data.append("ip",this.ip);
+          data.append("path",this.path);
+          data.append("filename",this.filename);
+          data.append("mode",this.mode);
+          data.append("wh", this.wh);
+          this.loading = true;
+          fetch("/rdphelper/save",
+          {
+            method: "POST",
+            body: data,
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            if(data.status){
+              alert("Saved ok.");
+            }else{
+              alert("Error saving, try again.");
+            }
+            this.get();
+            this.loading = false;
+          });
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

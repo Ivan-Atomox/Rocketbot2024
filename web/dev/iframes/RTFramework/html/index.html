@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es" class="grabbable">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="content">
+        <div class="custom-row-one-1">
+            <div class="custom-box">
+                <div class="custom-header">
+                    <h3 class="custom-title">First Execution Config.</h3>
+                </div>
+                <div class="custom-body">
+                    <p class="p-body">Execute the first time the process is run.</p>
+                    <label for="selectRobot1">Select robot:</label>
+                    <select class="form-control" id="selectRobot0">
+                        <option>-- Select Robot --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="custom-row-one-2">
+            <div class="custom-box">
+                <div class="custom-header">
+                    <h3 class="custom-title">Initialization</h3>
+                </div>
+                <div class="custom-body">
+                    <p class="p-body">Initialize applications used in the process.</p>
+                    <label for="selectRobot1">Select robot:</label>
+                    <select class="form-control" id="selectRobot1">
+                        <option>-- Select Robot --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="custom-row-two-1">
+            <div class="custom-box">
+                <div class="custom-header">
+                    <h3 class="custom-title">End Process</h3>
+                </div>
+                <div class="custom-body">
+                    <p class="p-body">End process and close all applications used.</p>
+                    <label for="selectRobot2">Select robot:</label>
+                    <select class="form-control" id="selectRobot2">
+                        <option>-- Select Robot --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="custom-row-two-2">
+            <div class="custom-box">
+                <div class="custom-header">
+                    <h3 class="custom-title">Get Transaction Data</h3>
+                </div>
+                <div class="custom-body">
+                    <p class="p-body">Get the next transaction to be processed.</p>
+                    <label for="selectRobot3">Select robot:</label>
+                    <select class="form-control" id="selectRobot3">
+                        <option>-- Select Robot --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="custom-box hidden">
+            </div>
+        </div>
+        <div class="custom-row-three">
+            <div class="custom-box">
+                <div class="custom-header">
+                    <h3 class="custom-title">Process Transaction</h3>
+                </div>
+                <div class="custom-body">
+                    <p class="p-body">Process a single transaction.<br>The result of the processing can be:<br>1)
+                        Success, 2) Business Exception, 3) System Exception</p>
+                    <label for="selectRobot4">Select robot:</label>
+                    <select class="form-control" id="selectRobot4">
+                        <option>-- Select Robot --</option>
+                    </select>
+                    <label for="maxRetries" class="form-label">Max Retries:</label>
+                    <input type="number" id="maxRetries" min="0" value="3" title="Select how many retries the execution will make" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="arrows">
+            <!-- Arrow System Exception 0 -->
+            <div class="arrow-line" id="arrow00"></div>
+            <div class="arrow-line-mid" id="arrow00-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow00-mid-2"></div>
+            <div class="arrow-text" id="arrowText00">System Exception</div>
+            <!-- Arrow Successful 1 -->
+            <div class="arrow-line" id="arrow0"></div>
+            <div class="arrow-line-mid" id="arrow0-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow0-mid-2"></div>
+            <div class="arrow-text" id="arrowText0">Successful</div>
+            <!-- Arrow Successful 2 -->
+            <div class="arrow-line" id="arrow1"></div>
+            <div class="arrow-text" id="arrowText1">Successful</div>
+            <!-- Arrow System Exception 1 -->
+            <div class="arrow-line" id="arrow2"></div>
+            <div class="arrow-line-mid" id="arrow2-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow2-mid-2"></div>
+            <div class="arrow-text" id="arrowText2">System Exception</div>
+            <!-- Arrow New Transaction -->
+            <div class="arrow-line" id="arrow3"></div>
+            <div class="arrow-text" id="arrowText3">New Transaction</div>
+            <!-- Arrow No Data -->
+            <div class="arrow-line" id="arrow4"></div>
+            <div class="arrow-line-mid" id="arrow4-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow4-mid-2"></div>
+            <div class="arrow-text" id="arrowText4">No Data</div>
+            <!-- Arrow Success -->
+            <div class="arrow-line" id="arrow5"></div>
+            <div class="arrow-line-mid" id="arrow5-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow5-mid-2"></div>
+            <div class="arrow-line-mid" id="arrow5-mid-3"></div>
+            <div class="arrow-text" id="arrowText5">Success</div>
+            <!-- Arrow Business Exception -->
+            <div class="arrow-line" id="arrow6"></div>
+            <div class="arrow-line-mid" id="arrow6-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow6-mid-2"></div>
+            <div class="arrow-line-mid" id="arrow6-mid-3"></div>
+            <div class="arrow-text" id="arrowText6">Business Exception</div>
+            <!-- Arrow System Exception 2 -->
+            <div class="arrow-line" id="arrow7"></div>
+            <div class="arrow-line-mid" id="arrow7-mid-1"></div>
+            <div class="arrow-line-mid" id="arrow7-mid-2"></div>
+            <div class="arrow-line-mid" id="arrow7-mid-3"></div>
+            <div class="arrow-text" id="arrowText7">System Exception</div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="restoreButton" onclick="restorePosition()">
+            <i class="fas fa-undo-alt"></i>
+        </button>
+        <button id="zoomInButton" onclick="zoomIn()">
+            <i class="fas fa-search-plus"></i>
+        </button>
+        <button id="zoomOutButton" onclick="zoomOut()">
+            <i class="fas fa-search-minus"></i>
+        </button>
+    </div>
+    <div id="footer">
+        <div class="sticky-footer">
+            <div id="tab0" class="tab">First Exec Config Vars</div>
+            <div id="tab1" class="tab">Initialization Vars</div>
+            <div id="tab2" class="tab">End Process Vars</div>
+            <div id="tab3" class="tab">Get Transaction Data Vars</div>
+            <div id="tab4" class="tab">Process Transaction Vars</div>
+        </div>
+        <div id="vars-container">
+            <div id="vars" class="">
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="functions.js"></script>
+    <script src="message.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4cfd9cdb00.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

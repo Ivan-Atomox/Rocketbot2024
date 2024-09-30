@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    
+    <title>DesktopRecorder</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="description" content="">
+    <meta charset="latin-1">
+    <meta name="viewport" content="width=device-width">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ISO_Rojo.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="/bower_components/ng-cropper/dist/ngCropper.all.css" />
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/all.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/perfect-scrollbar.css">
+    <style>
+        .main-table {
+            overflow-y: scroll;
+            height: calc(100vh - 115px);
+            padding: 0 0 0 0px !important;
+            border: solid 3px #6F6F6E;
+            border-radius: 0.25rem;
+            background-color: #FBFBFB;
+        }
+
+        .main-table th {
+            position: sticky;
+            top: 0;
+            background: #dedede;
+        }
+
+        .pointer {
+            cursor: pointer;
+        }
+        .hr-rocket {
+            max-width: 200px;
+            width: 30%;
+            border-top: 4px solid #bc0017;
+            text-align: right;
+            margin: 0 15px 15px 0;
+        }
+
+        .alert {
+            padding: 0.75rem 1rem;        
+        }
+
+        ul li {
+            padding-bottom: 0.3rem;
+            line-height: initial;
+        }
+        li span {
+            text-decoration: underline;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-loaded p-3 my-2 scroll-y"
+    onload="window.open('/desktoprecorder?action={{action}}&id={{id_}}&params={{params}}','_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no,width=550,height=280')">
+    <div class="d-flex flex-row">
+        <h5 class="m-0">Desktop Recorder</h5>
+        <button onclick="window.open('/desktoprecorder?action={{action}}&id={{id_}}&params={{params}}','_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no,width=550,height=280')" aria aria-label="Open in new tab" class="btn btn-none btn-sm">
+            <i class='fas fa-external-link-alt'></i>
+        </button>
+    </div>
+    <hr class="hr-rocket">
+    <p class="alert alert-primary">Desktop Recorder captures the actions of a user on the screen and generate the necessary commands to replicate them with Rocketbot.</p>
+    <h6>
+        <b>
+            Recording modes:
+        </b>
+    </h6>
+    <ul class="pl-2 list-unstyled">
+        <li>
+            <span>
+                Rec:
+            </span>
+            &nbsp Record multiple actions on the screen
+        </li>
+        <li>
+            <span>
+                Click:
+            </span>
+            &nbsp Click on an element
+        </li>
+        <li>
+            <span>
+                Get Text:
+            </span>
+            &nbsp Get text in a UI element
+        </li>
+        <li>
+            <span>
+                Select Item:
+            </span>
+            &nbsp Select an item in a combobox
+        </li>
+        <li>
+            <span>
+                Set Text:
+            </span>
+            &nbsp Modify text in an editable field
+        </li>
+        <li>
+            <span>
+                Send Keys:
+            </span>
+            &nbsp Simulates keyboard events
+        </li>
+    </ul>
+    <small>After pressing one of the modes, the recorder will start listening to the clicks. 
+        Use the <b>ALT + TAB</b> combination to move between applications. </small>
+
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+</body>
+
+</html>

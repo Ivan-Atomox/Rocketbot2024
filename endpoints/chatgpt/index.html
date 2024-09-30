@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orchestrator</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- Fonts Awesome -->
+  <link rel="stylesheet" href="/bower_components/components-font-awesome/css/all.css" />
+  <link rel="stylesheet" href="../../styles/main.css?v=20200920">
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="p-2">
+      <h4>
+        <em class="fas fa-robot"></em> ChatGPT
+      </h4>
+
+      <small>Ask to ChatGPT about anything</small>
+    </div>
+
+    <hr class="hr-rocket">
+    <div class="p-2 mb-4 pb-4 scroll-y">
+      <h5 @click="viewCondfig=!viewCondfig"><em class="fa fa-cogs"></em> Config Account <em class="fa"
+          v-bind:class="{'fa-chevron-right': !viewCondfig, 'fa-chevron-down': viewCondfig}"></em></h5>
+      <div class="p-2" v-show="viewCondfig">
+        <div class="form-group">
+          <label class="m-0">Apikey</label>
+          <input class="form-control form-control-sm" v-model="apikey">
+          <small>Get from openai account</small>
+        </div>
+        <button @click="test" class="btn btn-warning"> <em v-show="loading"
+            class="fa fa-spin fa-spinner"></em>Test</button>
+        <button @click="save" class="btn btn-success"><em class="fa fa-save"></em> Save</button>
+        <hr>
+      </div>
+      <div class="form-group">
+        <label>Response</label>
+        <div class="input-group">
+          <textarea name="response" class="form-control" id="response" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Prompt</label>
+        <div class="input-group">
+          <textarea class="form-control" name="prompt" id="prompt" v-model="prompt" cols="30" rows="2"
+            placeholder="Copy here the rocketbot error or write your own prompt"></textarea>
+        </div>
+      </div>
+
+      <button class="btn btn-danger btn-block mt-2" @click="get">
+        <em class="fa fa-upload"></em> Send<em v-show="loading" class="fa fa-spin fa-spinner"></em>
+      </button>
+    </div>
+  </div>
+
+  <script src="../../orchestrator/lodash.min.js"></script>
+  <script src="../../orchestrator/vue.min.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        viewCondfig: false,
+        robot_name: "{{robot_name}}",
+        db: "{{db}}",
+        loading: false,
+        apikey: "{{apikey}}",
+        prompt: "",
+        sleep: false
+      },
+      methods: {
+        searchFile() {
+          fetch('/getfile')
+            .then(response => response.text())
+            .then(data => {
+              this.db = data;
+            });
+        },
+        getMessage() {
+          if(document.activeElement !== document.getElementById("prompt") || this.sleep){
+            selected_error = window.parent.document.getElementById("returnMessage").value
+            this.prompt = selected_error
+          }
+        },
+
+        getCommandByParamSearch(data, param, data_to_search, setdata) {
+
+          let search = function (data, param, data_to_search) {
+            for (let c = 0; c < data.length; c++) {
+
+              //console.log("c",c,data[c])
+              if (data[c][param] == data_to_search) {
+                if (setdata) {
+                  //console.log(data[c],setdata)
+                  data[c] = setdata;
+                }
+                return data[c]
+
+              }
+              if (data[c].children) {
+                let d = search(data[c].children, param, data_to_search)
+                if (d) return d;
+              }
+              if (data[c].else) {
+                //console.log("else",data[c].else)
+                let d = search(data[c].else, param, data_to_search)
+                if (d) return d;
+              }
+            }
+          }
+          let re = search(data, param, data_to_search);
+          return re;
+        },
+        get() {
+          this.sleep = true
+          message = parent.document.getElementById("returnMessage").value
+          let project = this.getCommandByParamSearch(parent.project.commands, "message", message)
+          var data = new FormData();
+          data.append("apikey", this.apikey)
+          data.append("prompt", this.prompt)
+          data.append('variables', JSON.stringify(parent.project.vars.map((e) =>{return {name: e.name, value: e.data}})) )
+          data.append('project', JSON.stringify(project))
+          
+          this.loading = true;
+          fetch("../get",
+            {
+              method: "POST",
+              body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              document.getElementById("response").value = data.message.trim()
+              this.loading = false;
+            });
+            this.sleep = false
+        },
+        test() {
+          var data = new FormData();
+          data.append("apikey", this.apikey)
+          this.loading = true;
+          fetch("../test",
+            {
+              method: "POST",
+              body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              if (data.status) {
+                alert(data.message)
+              } else {
+                alert("Something is wrong, check the configuration and try again.")
+              }
+
+              this.loading = false;
+            });
+        },
+        save() {
+          var data = new FormData();
+          data.append("apikey", this.apikey)
+
+          this.loading = true;
+          fetch("../save",
+            {
+              method: "POST",
+              body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              if (data.status) {
+                alert("Saved ok.")
+              } else {
+                alert("Error saving, try again.")
+              }
+              this.get();
+              this.loading = false;
+            });
+        }
+      },
+      mounted(){
+        setInterval(()=>app.getMessage(), 100)
+      }
+    });
+  </script>
+</body>
+
+</html>

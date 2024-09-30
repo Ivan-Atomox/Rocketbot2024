@@ -1,0 +1,577 @@
+{
+    "author":"Mijahil Franchi",
+    "description": "Este módulo permite crear, leer, modificar u obtener valores de un archivo .ini",
+    "description_lang": {
+        "en": "This module allows you to create, read, modify or get values from a .ini file",
+        "es": "Este módulo permite crear, leer, modificar u obtener valores de un archivo .ini",
+        "pr": "Este módulo permite criar, ler, modificar ou obter valores de um arquivo .ini"
+    },
+    "disclaimer":"THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
+    "version":"1.3.3",
+    "license": "MIT",
+    "homepage":"http://rocketbot.com",
+    "linux": true,
+    "windows":true,
+    "mac":false,
+    "docker":true,
+    "dependencies": {},
+    "name": "ControlIni",
+    "title": {
+        "en": "Control Ini",
+        "es": "Control Ini",
+        "pr": "Control Ini"
+    },
+    "icon": "data:image/png;base64,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",
+    "children": [
+        {
+            "en": {
+                "title": "New Ini",
+                "description": "This commands creates a new ini file in the specified path.",
+                "title_options": null,
+                "options":null
+            },
+            "es": {
+                "title": "Nuevo Ini",
+                "description": "Este comando crea un nuevo archivo ini en la ruta especificada.",
+                "title_options": null,
+                "options":null
+            },
+            "pr": {
+                "title": "Novo Ini",
+                "description": "Este comando cria um novo arquivo ini no caminho especificado.",
+                "title_options": null,
+                "options":null
+            },
+            "form": {
+                "css": "modal-lg",
+                "inputs": [
+                    {
+                        "type": "folder_select",
+                        "placeholder": {
+                            "es": "C:/Users/usuario/Desktop",
+                            "en": "C:/Users/user/Desktop",
+                            "pr": "C:/Users/usuario/Desktop"
+                        },
+                        "title": {
+                            "es": "Ruta donde se ubicará el archivo:",
+                            "en": "Path where the file will be located:",
+                            "pr": "Caminho onde o arquivo será localizado:"
+                        },
+                        "description": {
+                            "es": "Ruta donde se ubicará el archivo ini creado.",
+                            "en": "Path where the created ini file will be located.",
+                            "pr": "Caminho onde o arquivo ini criado será localizado."
+                        },
+                        "id": "content",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "Nombre del archivo ini",
+                            "en": "Ini file name",
+                            "pr": "Nome do arquivo ini"
+                        },
+                        "title": {
+                            "es": "Nombre del archivo ini:",
+                            "en": "Name Ini file:",
+                            "pr": "Nome do arquivo ini:"
+                        },
+                        "description": {
+                            "es": "Nombre del archivo ini que se creará.",
+                            "en": "Name of the ini file that will be created.",
+                            "pr": "Nome do arquivo ini que será criado."
+                        },
+                        "help": {
+                            "es": "Nombre sin la extension",
+                            "en": "Name without extension",
+                            "pr": "Nome sem extensão"
+                        },
+                        "id": "idnombreini",
+                        "css": "col-md-12"
+                    }
+                ]
+            },
+            "video_youtube": "",
+            "icon": "data:image/png;base64,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",
+            "module": "nuevoIni",
+            "module_name": "ControlIni",
+            "visible": true,
+            "options": false,
+            "father": "module",
+            "group": "scripts",
+            "linux": false,
+            "windows":true,
+            "mac":false,
+            "docker":false
+        },
+        {
+            "en": {
+                "title": "Read Ini",
+                "description": "This command opens and reads the ini file from the specified path.",
+                "title_options": null,
+                "options":null
+            },
+            "es": {
+                "title": "Leer Ini",
+                "description": "Este comando abre y lee el archivo ini desde la ruta especificada.",
+                "title_options": null,
+                "options":null
+            },
+            "pr": {
+                "title": "Ler Ini",
+                "description": "Este comando abre e lê o arquivo ini do caminho especificado.",
+                "title_options": null,
+                "options":null
+            },
+            "form": {
+                "css": "modal-lg",
+                "inputs": [
+                    {
+                        "type": "file_select",
+                        "placeholder": {
+                            "es": "C:/Users/User/Desktop/archivo.ini",
+                            "en": "C:/Users/User/Desktop/file.ini",
+                            "pr": "C:/Users/User/Desktop/arquivo.ini"
+                        },
+                        "title": {
+                            "es": "Ruta del archivo ini:",
+                            "en": "Path of the ini file:",
+                            "pr": "Caminho do arquivo ini:"
+                        },
+                        "description": {
+                            "es": "Ruta del archivo ini que se leerá",
+                            "en": "Path of the ini file that will be read",
+                            "pr": "Caminho do arquivo ini que será lido"
+                        },
+                        "extensions": "ini",
+                        "id": "content",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "resultado",
+                            "en": "result",
+                            "pr": "resultado"
+                        },
+                        "title": {
+                            "es": "Variable:",
+                            "en": "Variable:",
+                            "pr": "Variável:"
+                        },
+                        "help": {
+                            "es": "Variable donde se almacenará el resultado sin {}",
+                            "en": "Variable where the result will be stored without {}",
+                            "pr": "Variável onde o resultado será armazenado sem {}"
+                        },
+                        "description": {
+                            "es": "Variable donde se almacenará el resultado de la operación",
+                            "en": "Variable where the result of the operation will be stored",
+                            "pr": "Variável onde o resultado da operação será armazenado"
+                        },
+                        "id": "variable",
+                        "css": "col-md-12"
+                    }
+                ]
+            },
+            "video_youtube": "",
+            "icon": "data:image/png;base64,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",
+            "module": "leerIni",
+            "module_name": "ControlIni",
+            "visible": true,
+            "options": false,
+            "father": "module",
+            "group": "scripts",
+            "linux": false,
+            "windows":true,
+            "mac":false,
+            "docker":false
+        },
+        {
+            "en": {
+                "title": "Get Data",
+                "description": "This command gets the data from the section and store it in a Rocketbot variable.",
+                "title_options": null,
+                "options":null
+            },
+            "es": {
+                "title": "Obtener Dato",
+                "description": "Este comando obtiene el dato de la sección y lo almacena en una variable de Rocketbot.",
+                "title_options": null,
+                "options":null
+            },
+            "pr": {
+                "title": "Obter Dado",
+                "description": "Este comando obtém os dados da seção e os armazena em uma variável Rocketbot.",
+                "title_options": null,
+                "options":null
+            },
+            "form": {
+                "css": "modal-lg",
+                "inputs": [
+                    {
+                        "type": "input",
+                        "placeholder": "SECTION",
+                        "title": {
+                            "es": "Seccion:",
+                            "en": "Section:",
+                            "pr": "Seção:"
+                        },
+                        "description": {
+                            "es": "Seccion donde se encuentra el dato que deseamos obtener",
+                            "en": "Section where the data we want to obtain is located",
+                            "pr": "Seção onde os dados que desejamos obter estão localizados"
+                        },
+                        "help": {
+                            "es": "Seccion donde se encuentra el dato. Debe ir sin [].",
+                            "en": "Section where the data is entered. It must go without [].",
+                            "pr": "Seção onde os dados são inseridos. Deve ir sem []."
+                        },
+                        "id": "idseccion",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": "data",
+                        "title": {
+                            "es": "Dato:",
+                            "en": "Data:",
+                            "pr": "Dados:"
+                        },
+                        "description": {
+                            "es": "Nombre del dato que se desea obtener",
+                            "en": "Name of the data that wants to be obtained",
+                            "pr": "Nome dos dados que deseja obter"
+                        },
+                        "help": {
+                            "es": "Dato que se desea obtener. Debe ir sin =.",
+                            "en": "Data that wants to be obtained. It must go without =.",
+                            "pr": "Dados que deseja obter. Deve ir sem =."
+                        },
+                        "id": "iddato",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "resultado",
+                            "en": "result",
+                            "pr": "resultado"
+                        },
+                        "title": {
+                            "es": "Variable:",
+                            "en": "Variable:",
+                            "pr": "Variável:"
+                        },
+                        "help": {
+                            "es": "Variable donde se almacenará el resultado sin {}",
+                            "en": "Variable where the result will be stored without {}",
+                            "pr": "Variável onde o resultado será armazenado sem {}"
+                        },
+                        "description": {
+                            "es": "Variable donde se almacenará el resultado de la operación",
+                            "en": "Variable where the result of the operation will be stored",
+                            "pr": "Variável onde o resultado da operação será armazenado"
+                        },
+                        "id": "idvar",
+                        "css": "col-md-12"
+                    }
+                ]
+            },
+            "video_youtube": "",
+            "icon": "data:image/png;base64,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",
+            "module": "obtenerDato",
+            "module_name": "ControlIni",
+            "visible": true,
+            "options": false,
+            "father": "module",
+            "group": "scripts",
+            "linux": false,
+            "windows":true,
+            "mac":false,
+            "docker":false
+        },
+        {
+            "en": {
+                "title": "Get All Data",
+                "description": "This command gets the all data from the selected section and stores it in a Rocketbot variable in a dictionary format.",
+                "title_options": null,
+                "options":null
+            },
+            "es": {
+                "title": "Obtener Todos los Datos",
+                "description": "Este comando obtiene los datos de la sección y los almacena en una variable Rocketbot en formato diccionario.",
+                "title_options": null,
+                "options":null
+            },
+            "pr": {
+                "title": "Obter todos os dados",
+                "description": "Este comando obtém todos os dados da seção selecionada e os armazena em uma variável Rocketbot em formato de dicionário.",
+                "title_options": null,
+                "options":null
+            },
+            "form": {
+                "css": "modal-lg",
+                "inputs": [
+                    {
+                        "type": "input",
+                        "placeholder": "SECTION",
+                        "title": {
+                            "es": "Seccion:",
+                            "en": "Section:",
+                            "pr": "Seção:"
+                        },
+                        "description": {
+                            "es": "Seccion donde se encuentran los que deseamos obtener",
+                            "en": "Section where the data we want to obtain are located",
+                            "pr": "Seção onde os dados que queremos obter estão localizados"
+                        },
+                        "help": {
+                            "es": "Seccion donde se encuentran los datos. Debe ir sin [].",
+                            "en": "Section where the data are located. It must go without [].",
+                            "pr": "Seção onde os dados são inseridos. Deve ir sem []."
+                        },
+                        "id": "idseccion",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "resultado",
+                            "en": "result",
+                            "pr": "resultado"
+                        },
+                        "title": {
+                            "es": "Variable:",
+                            "en": "Variable:",
+                            "pr": "Variável:"
+                        },
+                        "help": {
+                            "es": "Variable donde se almacenará el resultado sin {}",
+                            "en": "Variable where the result will be stored without {}",
+                            "pr": "Variável onde o resultado será armazenado sem {}"
+                        },
+                        "description": {
+                            "es": "Variable donde se almacenará el resultado de la operación",
+                            "en": "Variable where the result of the operation will be stored",
+                            "pr": "Variável onde o resultado da operação será armazenado"
+                        },
+                        "id": "idvar",
+                        "css": "col-md-12"
+                    }
+                ]
+            },
+            "video_youtube": "",
+            "icon": "data:image/png;base64,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",
+            "module": "obtenerTodosDatos",
+            "module_name": "ControlIni",
+            "visible": true,
+            "options": false,
+            "father": "module",
+            "group": "scripts",
+            "linux": false,
+            "windows":true,
+            "mac":false,
+            "docker":false
+        },
+        {
+            "es": {
+                "title": "Modificar Dato",
+                "description": "Este comando permite modificar el dato del ini abierto.",
+                "title_options": null,
+                "options":null
+            },
+            "en": {
+                "title": "Edit Data",
+                "description": "This command allows you to modify the data of the open ini.",
+                "title_options": null,
+                "options":null
+            },
+            "pr": {
+                "title": "Editar Dado",
+                "description": "Este comando permite modificar o dado do ini aberto.",
+                "title_options": null,
+                "options":null
+            },
+            "form": {
+                "css": "modal-lg",
+                "inputs": [
+                    {
+                        "type": "input",
+                        "placeholder": "SECTION",
+                        "title": {
+                            "es": "Seccion:",
+                            "en": "Section:",
+                            "pr": "Seção:"
+                        },
+                        "description": {
+                            "es": "Seccion donde se encuentra el dato que deseamos editar",
+                            "en": "Section where the data we want to edit is located",
+                            "pr": "Seção onde os dados que desejamos editar estão localizados"
+                        },
+                        "help": {
+                            "es": "Seccion donde se encuentra el dato. Debe ir sin [].",
+                            "en": "Section where the data is entered. It must go without [].",
+                            "pr": "Seção onde os dados são inseridos. Deve ir sem []."
+                        },
+                        "id": "idseccion",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": "data",
+                        "title": {
+                            "es": "Dato:",
+                            "en": "Data:",
+                            "pr": "Dados:"
+                        },
+                        "description": {
+                            "es": "Dato que se desea editar.",
+                            "en": "Data that wants to be edited.",
+                            "pr": "Dados que deseja editar."
+                        },
+                        "help": {
+                            "es": "Dato que se desea editar. Debe ir sin =.",
+                            "en": "Data that wants to be edited. It must go without =.",
+                            "pr": "Dados que deseja editar. Deve ir sem =."
+                        },
+                        "id": "iddato",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "Contenido de la variable.",
+                            "en": "Content of the variable.",
+                            "pr": "Conteúdo da variável."
+                        },
+                        "title": {
+                            "es": "Contenido:",
+                            "en": "Content:",
+                            "pr": "Conteúdo:"
+                        },
+                        "description": {
+                            "es": "Contenido nuevo que tendrá el dato del ini.",
+                            "en": "New content that the ini data will have.",
+                            "pr": "Novo conteúdo que o dado do ini terá."
+                        },
+                        "id": "idcontent",
+                        "css": "col-md-12"
+                    }
+                ]
+            },
+            "video_youtube": "",
+            "icon": "data:image/png;base64,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",
+            "module": "modificaDato",
+            "module_name": "ControlIni",
+            "visible": true,
+            "options": false,
+            "father": "module",
+            "group": "scripts",
+            "linux": false,
+            "windows":true,
+            "mac":false,
+            "docker":false
+        },
+        {
+            "es": {
+                "title": "Añadir Dato",
+                "description": "Este comando añade un dato en una sección indicada.",
+                "title_options": null,
+                "options":null
+            },
+            "en": {
+                "title": "Add Data",
+                "description": "This command adds a data in a section indicated.",
+                "title_options": null,
+                "options":null
+            },
+            "pr": {
+                "title": "Adicionar Dado",
+                "description": "Este comando adiciona um dado em uma seção indicada.",
+                "title_options": null,
+                "options":null
+            },
+            "form": {
+                "css": "modal-lg",
+                "inputs": [
+                    {
+                        "type": "input",
+                        "placeholder": "SECTION",
+                        "title": {
+                            "es": "Seccion:",
+                            "en": "Section:",
+                            "pr": "Seção:"
+                        },
+                        "description": {
+                            "es": "Seccion donde se ubicará el dato que deseamos agregar.",
+                            "en": "Section where the data we want to add will be located.",
+                            "pr": "Seção onde os dados que desejamos adicionar estarão localizados."
+                        },
+                        "help": {
+                            "es": "Seccion donde se agregará el dato. Debe ir sin [].",
+                            "en": "Section where the data will be added. It must go without [].",
+                            "pr": "Seção onde os dados serão adicionados. Deve ir sem []."
+                        },
+                        "id": "idseccion",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": "data",
+                        "title": {
+                            "es": "Dato:",
+                            "en": "Data:",
+                            "pr": "Dados:"
+                        },
+                        "description": {
+                            "es": "Dato que se desea agregar.",
+                            "en": "Data that wants to be added.",
+                            "pr": "Dados que deseja adicionar."
+                        },
+                        "help": {
+                            "es": "Dato que se desea agregar. Debe ir sin =.",
+                            "en": "Data that wants to be added. It must go without =.",
+                            "pr": "Dados que deseja adicionar. Deve ir sem =."
+                        },
+                        "id": "iddato",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "Contenido de la variable.",
+                            "en": "Content of the variable.",
+                            "pr": "Conteúdo da variável."
+                        },
+                        "title": {
+                            "es": "Contenido:",
+                            "en": "Content:",
+                            "pr": "Conteúdo:"
+                        },
+                        "description": {
+                            "es": "Contenido de la variable que se agregará al archivo ini.",
+                            "en": "Content of the variable that will be added to the ini file.",
+                            "pr": "Conteúdo da variável que será adicionada ao arquivo ini."
+                        },
+                        "id": "idcontent",
+                        "css": "col-md-12"
+                    }
+                ]
+            },
+            "video_youtube": "",
+            "icon": "data:image/png;base64,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",
+            "module": "anadirDato",
+            "module_name": "ControlIni",
+            "visible": true,
+            "options": false,
+            "father": "module",
+            "group": "scripts",
+            "linux": false,
+            "windows":true,
+            "mac":false,
+            "docker":false
+        }
+    ]
+}

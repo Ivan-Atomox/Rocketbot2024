@@ -1,0 +1,36 @@
+{
+    "commands": [
+        {
+            "father": "module",
+            "command": "{\"module_name\":\"ControlIni\",\"module\":\"leerIni\",\"content\":\"{path}\",\"variable\":\"result\"}",
+            "option": "",
+            "var": "",
+            "index": 0,
+            "group": "scripts",
+            "execute": 2,
+            "if": "",
+            "children": [],
+            "else": [],
+            "id": "54ebc49e-5886-e94d-a58e-4ccaff71e665",
+            "mode_live": true,
+            "getvar": "",
+            "screenshot": "",
+            "execute_debbug": 0,
+            "description": "Realiza conexion con servidor Gmail"
+        }
+    ],
+    "variables": [
+        {
+            "name": "result",
+            "data": "",
+            "type": "string",
+            "description": "Resultado de la lectura del archivo"
+        },
+        {
+            "name": "path",
+            "data": "test\\resources\\prueba.ini",
+            "type": "string",
+            "description": "Ruta del archivo"
+        }
+    ]
+}

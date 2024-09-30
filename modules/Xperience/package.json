@@ -1,0 +1,570 @@
+{
+  "author": "José Gonzalez - Nicolas Garcia",
+  "description": "Module to work with forms of Rocketbot Xperience",
+  "description_lang": {
+    "es": "Módulo para trabajar con formularios de Rocketbot Xperience",
+    "en": "Module to work with forms of Rocketbot Xperience",
+    "pr": "Modulo para trabalhar com formulários do Rocketbot Xperience"
+  },
+  "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "http://rocketbot.com",
+  "linux": true,
+  "windows": true,
+  "mac": true,
+  "docker": true,
+  "name": "Xperience",
+  "dependencies": {},
+  "title": {
+    "en": "Rocketbot Xperience",
+    "es": "Rocketbot Xperience",
+    "pr": "Rocketbot Xperience"
+  },
+  "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+  "children": [
+    {
+      "en": {
+        "title": "Login NOC",
+        "description": "Login to NOC using one of the options, API Key, noc.ini file, or credentials.",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Login NOC",
+        "description": "Inicie sesión en NOC utilizando unda de las opciones, API Key, archivo noc.ini o credenciales.",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Login NOC",
+        "description": "Faça login no NOC usando uma das opções, arquivo noc.ini, API Key ou credenciais.",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "https://roc.myrb.io/",
+            "title": {
+              "es": "URL Servidor",
+              "en": "URL Server:",
+              "pr": "URL Servidor"
+            },
+            "description": {
+              "es": "URL del servidor a donde se conecta",
+              "en": "Server URL",
+              "pr": "URL do servidor para se conectar"
+            },
+            "help": {
+              "es": "*Obligatorio*",
+              "en": "*Mandatory*",
+              "pr": "*Obrigatório*"
+            },
+            "id": "server_url",
+            "css": "col-md-12"
+          },
+          {
+            "type": "html",
+            "description": {
+              "es": "Opciones para iniciar sesión en R.O.C, se puede usar las credenciales del usuario, API Key o seleccionando archivo noc.ini",
+              "en": "Options to login to R.O.C, you can use user credentials, API Key or by selecting noc.ini file",
+              "pr": "Opções para fazer login no R.O.C, você pode usar credenciais de usuário, chave de API ou selecionar o arquivo noc.ini"
+            },
+            "title": {
+              "es": "Seleccione un metodo para conectarse al Orquestador",
+              "en": "Select a method to connect to the Orchestrator",
+              "pr": "Selecione um método para se conectar ao orquestrador"
+            },
+            "placeholder": "API Key",
+            "src": "index.html",
+            "id": "html",
+            "css": "col-md-12",
+            "style": "height:165px;"
+          },
+          {
+            "type": "input",
+            "description": {
+              "es": "Variable donde se almacenara el estado de la conexion, devuelve True si es exitosa o False en el caso contrario",
+              "en": "Variable where the state of the connection will be stored, returns True if it is successful or False otherwise",
+              "pr": "Variável onde será armazenado o estado da conexão, retorna True se for bem sucedida ou False caso contrário"
+            },
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar resultado a Variable:",
+              "en": "Assign result to a Variable:",
+              "pr": "Atribuir resultado à variável:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variabel em chaves {}"
+            },
+            "remove_vars": true,
+            "id": "var_",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+      "module": "Login",
+      "module_name": "Xperience",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Get Form queue",
+        "description": "Get queues",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Obtener cola de trabajo de Forms",
+        "description": "Obtiene las colas de trabajo",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Obter fila de trabalho de Formulários",
+        "description": "Obtém as filas de trabalho",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "8YWUW8AXAV3UPNKY",
+              "en": "8YWUW8AXAV3UPNKY",
+              "pr": "8YWUW8AXAV3UPNKY"
+            },
+            "title": {
+              "es": "Form Token",
+              "en": "Form Token",
+              "pr": "Form Token"
+            },
+            "description": {
+              "es": "Form Token",
+              "en": "Form Token",
+              "pr": "Form Token"
+            },
+            "id": "token",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "var",
+              "en": "var",
+              "pr": "var"
+            },
+            "description": {
+              "en": "Variable to store result without {}",
+              "es": "Variable donde guardar resultado sin {}",
+              "pr": "Variável para guardar resultado sem {}"
+            },
+            "title": {
+              "es": "Asignar a variable",
+              "en": "Set to var",
+              "pr": "Definir como variável"
+            },
+            "remove_vars": true,
+            "id": "result",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+      "module": "GetForm",
+      "module_name": "Xperience",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Get Form queue data",
+        "description": "Get Form data from queue",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Obtener datos de Forms",
+        "description": "Obtener datos de formulario de la cola de trabajo",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Obter dados de Formulários",
+        "description": "Obter dados de formulário da fila de trabalho",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "1",
+              "en": "1",
+              "pr": "1"
+            },
+            "title": {
+              "es": "ID cola de trabajo",
+              "en": "Queue ID",
+              "pr": "ID da fila de trabalho"
+            },
+            "description": {
+              "es": "ID de la cola de trabajo",
+              "en": "Queue ID",
+              "pr": "ID da fila de trabalho"
+            },
+            "id": "id_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "8YWUW8AXAV3UPNKY",
+              "en": "8YWUW8AXAV3UPNKY",
+              "pr": "8YWUW8AXAV3UPNKY"
+            },
+            "title": {
+              "es": "Form Token",
+              "en": "Form Token",
+              "pr": "Form Token"
+            },
+            "description": {
+              "es": "Token del formulario",
+              "en": "Form Token",
+              "pr": "Form Token"
+            },
+            "id": "token_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "var",
+              "en": "var",
+              "pr": "var"
+            },
+            "description": {
+              "en": "Variable to store result without {}",
+              "es": "Variable donde guardar resultado sin {}",
+              "pr": "Variável para guardar resultado sem {}"
+            },
+            "title": {
+              "es": "Asignar a variable",
+              "en": "Set to var",
+              "pr": "Definir como variável"
+            },
+            "remove_vars": true,
+            "id": "result",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+      "module": "GetFormData",
+      "module_name": "Xperience",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Download Form File",
+        "description": "Download a file uploaded in a form",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Descarga archivo",
+        "description": "Descarga un archivo subido a un formulario",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Baixar arquivo",
+        "description": "Baixe um arquivo enviado em um formulário",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "1",
+              "en": "1",
+              "pr": "1"
+            },
+            "title": {
+              "es": "ID cola de trabajo",
+              "en": "Queue ID",
+              "pr": "ID da fila"
+            },
+            "description": {
+              "es": "ID de la cola de trabajo",
+              "en": "Queue ID",
+              "pr": "ID da fila"
+            },
+            "id": "id_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "archivo.pdf",
+              "en": "file.pdf",
+              "pr": "arquivo.pdf"
+            },
+            "title": {
+              "es": "Archivo",
+              "en": "File",
+              "pr": "Arquivo"
+            },
+            "description": {
+              "es": "Variable que tiene la ruta del archivo del formulario",
+              "en": "Var that contains file path of queue",
+              "pr": "Variável que contém o caminho do arquivo do formulário"
+            },
+            "id": "download_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "file_new",
+            "title": {
+              "es": "Guardar archivo en:",
+              "en": "Save file to:",
+              "pr": "Salvar arquivo em:"
+            },
+            "placeholder": {
+              "es": "C:\\Rocketbot\\file.ini",
+              "en": "C:\\Rocketbot\\file.ini",
+              "pr": "C:\\Rocketbot\\file.ini"
+            },
+            "description": {
+              "es": "Ruta donde se guardará el archivo",
+              "en": "Path where file will be saved",
+              "pr": "Caminho onde o arquivo será salvo"
+            },
+            "id": "save_",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+      "module": "DownloadFile",
+      "module_name": "Xperience",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Update Form queue status",
+        "description": "Change status to form queue",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Actualizar estado de la cola Form",
+        "description": "Cambia el estado de la cola",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Atualizar estado da fila Form",
+        "description": "Mudar o estado da fila",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "select",
+            "placeholder": "Done",
+            "title": {
+              "es": "Estado",
+              "en": "Status",
+              "pr": "Estado"
+            },
+            "options": [
+              {"title":  "Done", "value":  "done"},
+              {"title":  "Lock", "value": "lock"},
+              {"title":  "Undone", "value": "undone"}
+            ],
+            "description": {
+              "es": "Seleccione el estado de la cola",
+              "en": "Select the status of the queue",
+              "pr": "Selecione o estado da fila"
+            },
+            "id": "status_",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "1",
+              "en": "1",
+              "pr": "1"
+            },
+            "title": {
+              "es": "ID cola de trabajo",
+              "en": "Queue ID",
+              "pr": "ID da fila de trabalho"
+            },
+            "description": {
+              "es": "Ingrese el ID de la cola de trabajo",
+              "en": "Enter the ID of the queue",
+              "pr": "Insira o ID da fila de trabalho"
+            },
+            "id": "id_",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "variable",
+            "title": {
+              "es": "Asignar a variable",
+              "en": "Set to var",
+              "pr": "Atribuir a variável"
+            },
+            "description": {
+              "es": "Nombre de variable sin {} donde se guardara el resultado",
+              "en": "Var without {} where the result will be saved",
+              "pr": "Nome da variável sem {} onde o resultado será salvo"
+            },
+            "remove_vars": true,
+            "id": "result_",
+            "css": "col-md-4"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+      "module": "SetStatus",
+      "module_name": "Xperience",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Return Message to Xperience",
+        "description": "Returns a message to the Xperience form",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Devolver Mensaje a Xperience",
+        "description": "Devuelve un mensaje al formulario Xperience",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Return Message to Xperience",
+        "description": "Returns a message to the Xperience form",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "{xperience}",
+              "en": "{xperience}",
+              "pr": "{xperience}"
+            },
+            "title": {
+              "es": "Token Xperience",
+              "en": "Xperience Token",
+              "pr": "Xperience Token"
+            },
+            "description": {
+              "es": "Token de Xperience",
+              "en": "Xperience Token",
+              "pr": "Xperience Token"
+            },
+            "id": "xperience",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Este es un mensaje",
+              "en": "This is a message",
+              "pr": "This is a message"
+            },
+            "title": {
+              "es": "Mensaje a devolver",
+              "en": "Message to return",
+              "pr": "Message to return"
+            },
+            "description": {
+              "es": "Mensaje a devolver",
+              "en": "Message to return",
+              "pr": "Message to return"
+            },
+            "id": "extradata",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODUuMDQgODUuMDQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojYmMxODFiO30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03My42NCwxMS4yMmMtNy02LjQ3LTE3LjQtOS43LTMxLjEyLTkuN1MxOC4zOSw0Ljc1LDExLjQsMTEuMjIuOTEsMjguMTguOTEsNDIuNjEsNC40LDY3LjM1LDExLjQsNzMuODJzMTcuMzksOS43LDMxLjEyLDkuNywyNC4xMy0zLjIzLDMxLjEyLTkuN1M4NC4xMyw1Ni45NCw4NC4xMyw0Mi42MSw4MC43MiwxNy42OSw3My42NCwxMS4yMiIvPjxnIGlkPSJEaG44dVQudGlmIj48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00OS4yNywxNS4xNmgxLjE1bC4xNS4wNWMuNTcuMTEsMS4xNi4xOCwxLjcyLjMzYTUuMjYsNS4yNiwwLDAsMSwzLjg1LDMuOTMsMTIuMTIsMTIuMTIsMCwwLDEsLjM3LDMuNzUsMTEuMjksMTEuMjksMCwwLDEtMSw0LjI4Yy0uMzYuODEtLjgsMS41OC0xLjE5LDIuMzctLjE3LjM2LS4zLjc0LS40NiwxLjE0aDguMzdhNS45Myw1LjkzLDAsMCwxLC45NCwwLDUuNzksNS43OSwwLDAsMSw0Ljg3LDQsNi40Nyw2LjQ3LDAsMCwxLTEuMiw2LjM2LjM5LjM5LDAsMCwwLS4wOC40MkE3LjI5LDcuMjksMCwwLDEsNjcuMTIsNDVhNi41OCw2LjU4LDAsMCwxLTEuMTgsMywuNDEuNDEsMCwwLDAtLjA3LjI4QTYsNiwwLDAsMSw2Niw1MC45MWE2LjQ1LDYuNDUsMCwwLDEtMS42OSwzLjYzLjQ4LjQ4LDAsMCwwLS4xNS40MSw5Ljc3LDkuNzcsMCwwLDEtLjEzLDIuMzUsNi4yOSw2LjI5LDAsMCwxLTIuNDEsNCw3LjcxLDcuNzEsMCwwLDEtNC40OCwxLjQ2Yy0xLjMzLDAtMi42NSwwLTQsMGEyMS41NSwyMS41NSwwLDAsMS0zLjY4LS4yNSwzNC4zLDM0LjMsMCwwLDEtNS4xMy0xLjE1Yy0yLjA3LS42Ni00LjEyLTEuMzgtNi4xOS0yYTE1LjIzLDE1LjIzLDAsMCwwLTIuNDctLjU3LDIuMjcsMi4yNywwLDAsMS0yLTIuMTJjMC01LjY0LDAtMTEuMjksMC0xNi45NCwwLS45NCwwLTEuODksMC0yLjg0QTIsMiwwLDAsMSwzNS40MywzNWExLjY4LDEuNjgsMCwwLDAsLjg3LS4zMiw3LjY1LDcuNjUsMCwwLDAsLjY5LS41NiwzNy41MywzNy41MywwLDAsMCwzLjU1LTRjMS4yMy0xLjU2LDIuNDQtMy4xMywzLjgtNC41N2E0LjUxLDQuNTEsMCwwLDAsLjY3LTEsMTMuMjcsMTMuMjcsMCwwLDAsMS4xNC0zLjc5LDExLjM3LDExLjM3LDAsMCwxLDEuMDctMy41M0EzLjMyLDMuMzIsMCwwLDEsNDkuMjcsMTUuMTZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTYuODcsMzYuNjljMC0uMTMuMDctLjI2LjExLS4zOUEyLDIsMCwwLDEsMTguNzgsMzVjMS4zMiwwLDIuNjMsMCwzLjk1LDAsMS42NywwLDMuMzMsMCw1LDBhMiwyLDAsMCwxLDIsMS41MywyLjg4LDIuODgsMCwwLDEsLjA2LjU5VjU2LjY0YTIsMiwwLDAsMS0yLjExLDIuMTNIMTlhMiwyLDAsMCwxLTIuMDYtMS42OWwwLDBaTTIzLjIsNTQuOGEyLjYsMi42LDAsMCwwLDIuNjMtMi41OUEyLjYxLDIuNjEsMCwxLDAsMjMuMiw1NC44WiIvPjwvZz48L3N2Zz4=",
+      "module": "setXperience",
+      "module_name": "Xperience",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    }
+  ]
+}

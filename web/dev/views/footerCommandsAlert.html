@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"
+      integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- <script
+      src="https://kit.fontawesome.com/7b3b3e7b0b.js"
+      crossorigin="anonymous"
+    ></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Document</title>
+    <style>
+      .alertMenuContainer {
+        background-color: white;
+      }
+
+      .warningMenuHeader {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 0.9rem 0.9rem;
+        border: 1px solid #8f8f8f;
+      }
+
+      .warningMenuHeader .close {
+        padding: 1rem 1rem;
+        margin: -1rem -1rem -1rem auto;
+      }
+
+      .alertMenu {
+        overflow: auto;
+        height: 300px;
+      }
+
+      .can-click {
+        cursor: pointer;
+      }
+
+      /***************************SCROLLBAR******************************/
+
+      .scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: white;
+      }
+      .scrollbar::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: lightgray;
+      }
+      .scrollbar::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="scrollbar">
+    <div class="warningMenuHeader">
+      <h5 id="mainHeader" class="m-0"></h5>
+    </div>
+    <div class="accordion" id="alertsAccordion">
+      <div class="accordion-item d-none" id="forParamsEmptyCommandsSection">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            id="forParamsEmptyTitle"
+            class="btn btn-sm w-100 btn-outline-danger"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          ></button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingOne"
+          data-bs-parent="#alertsAccordion"
+        >
+          <div class="accordion-body p-0">
+            <div class="card-body p-0">
+              <ul id="forParamsEmptyCommandsList" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item d-none" id="emptyIfCommandsSection">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            id="emptyIf"
+            class="btn btn-sm w-100 btn-outline-danger"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          ></button>
+        </h2>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#alertsAccordion"
+        >
+          <div class="accordion-body p-0">
+            <div class="card-body p-0">
+              <ul id="emptyIfCommandsList" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item d-none" id="ifParamsEmptyCommandsSection">
+        <h2 class="accordion-header" id="headingThree">
+          <button
+            id="ifParamsEmpty"
+            class="btn btn-sm w-100 btn-outline-danger"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          ></button>
+        </h2>
+        <div
+          id="collapseThree"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingThree"
+          data-bs-parent="#alertsAccordion"
+        >
+          <div class="accordion-body p-0">
+            <div class="card-body p-0">
+              <ul id="ifParamsEmptyCommandsList" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item d-none" id="whileParamsEmptyCommandsSection">
+        <h2 class="accordion-header" id="headingFour">
+          <button
+            id="whileParamsEmpty"
+            class="btn btn-sm w-100 btn-outline-danger"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFour"
+            aria-expanded="false"
+            aria-controls="collapseFour"
+          ></button>
+        </h2>
+        <div
+          id="collapseFour"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingFour"
+          data-bs-parent="#alertsAccordion"
+        >
+          <div class="accordion-body p-0">
+            <div class="card-body p-0">
+              <ul id="whileParamsEmptyCommandsList" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item d-none" id="maxCommandsDangerSection">
+        <h2 class="accordion-header">
+          <button
+            id="excessCommandsDanger"
+            class="btn btn-sm w-100 btn-outline-danger"
+            type="button"
+          ></button>
+        </h2>
+      </div>
+
+      <div class="accordion-item d-none" id="alertCommandsSection">
+        <h2 class="accordion-header" id="alertCommandsTitle">
+          <button
+            id="alertCommands"
+            class="btn btn-sm w-100 btn-outline-warning"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSix"
+            aria-expanded="false"
+            aria-controls="collapseSix"
+          ></button>
+        </h2>
+        <div
+          id="collapseSix"
+          class="accordion-collapse collapse"
+          aria-labelledby="alertCommandsTitle"
+          data-bs-parent="#alertsAccordion"
+        >
+          <div class="accordion-body p-0">
+            <div class="card-body p-0">
+              <ul id="alertCommandsList" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item d-none" id="waitCommandsSection">
+        <h2 class="accordion-header" id="waitCommandsTitle">
+          <button
+            id="waitCommandsLargerThanFive"
+            class="btn btn-sm w-100 btn-outline-warning"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSeven"
+            aria-expanded="false"
+            aria-controls="collapseSeven"
+          ></button>
+        </h2>
+        <div
+          id="collapseSeven"
+          class="accordion-collapse collapse"
+          aria-labelledby="waitCommandsTitle"
+          data-bs-parent="#alertsAccordion"
+        >
+          <div class="accordion-body p-0">
+            <div class="card-body p-0">
+              <ul id="waitCommandsList" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item d-none" id="maxCommandsWarningSection">
+        <h2 class="accordion-header">
+          <button
+            id="excessCommandsWarning"
+            class="btn btn-sm w-100 btn-outline-warning"
+            type="button"
+          ></button>
+        </h2>
+      </div>
+
+      <div class="accordion-item d-none" id="pythonOver50WarningSection">
+        <h2 class="accordion-header">
+          <button
+            id="pythonOver50Warning"
+            class="btn btn-sm w-100 btn-outline-warning"
+            type="button"
+          ></button>
+        </h2>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    const onLoad = () => {
+      var command_line;
+
+      const assignTexts = (texts) => {
+        command_line = texts.command_line;
+
+        const MAX_RECOMMENDED_DANGER = 100;
+        const MAX_RECOMMENDED_WARNING = 50;
+
+        const MAIN_HEADER = document.getElementById("mainHeader");
+        const FOR_PARAMS_EMPTY_TITLE = document.getElementById(
+          "forParamsEmptyTitle"
+        );
+        const EMPTY_IF = document.getElementById("emptyIf");
+        const IF_PARAMS_EMPTY = document.getElementById("ifParamsEmpty");
+        const WHILE_PARAMS_EMPTY = document.getElementById("whileParamsEmpty");
+        const EXCESS_COMMANDS_DANGER = document.getElementById(
+          "excessCommandsDanger"
+        );
+
+        const ALERT_COMMANDS = document.getElementById("alertCommands");
+        const EXCESS_COMMANDS_WARNING = document.getElementById(
+          "excessCommandsWarning"
+        );
+        const WAIT_COMMANDS_LARGER_THAN_FIVE = document.getElementById(
+          "waitCommandsLargerThanFive"
+        );
+        const PYTHON_OVER_50_WARNING = document.getElementById(
+          "pythonOver50Warning"
+        );
+
+        MAIN_HEADER.innerText = texts.warnings_and_errors;
+        FOR_PARAMS_EMPTY_TITLE.innerText = texts.for_params_empty;
+        EMPTY_IF.innerText = texts.empty_if;
+        IF_PARAMS_EMPTY.innerText = texts.if_params_empty;
+        WHILE_PARAMS_EMPTY.innerText = texts.while_params_empty;
+        EXCESS_COMMANDS_DANGER.innerText =
+          texts.excess_commands_danger + ` (${MAX_RECOMMENDED_DANGER})`;
+        ALERT_COMMANDS.innerText = texts.alert_commands;
+        (WAIT_COMMANDS_LARGER_THAN_FIVE.innerText =
+          texts.wait_commands_larger_than_five),
+          (EXCESS_COMMANDS_WARNING.innerText =
+            texts.excess_commands_warning + ` (${MAX_RECOMMENDED_WARNING})`);
+        PYTHON_OVER_50_WARNING.innerText = texts.python_over_50_warning;
+      };
+
+      const createCommandListItems = (
+        commandArray,
+        alertIcon,
+        commandsList
+      ) => {
+        let li;
+        let small;
+        let arrowIcon;
+        commandArray.forEach((command) => {
+          li = document.createElement("li");
+          li.classList.add("list-group-item");
+          li.classList.add("can-click");
+          let icon = alertIcon;
+          li.innerHTML = icon;
+          small = document.createElement("small");
+          small.innerHTML = ` ${command_line}: ${command.line}`;
+          li.appendChild(small);
+          li.addEventListener("click", () => {
+            parent.postMessage({ type: "scrollTo", id: command.id }, "*");
+          });
+          arrowIcon = document.createElement("i");
+          arrowIcon.classList.add("fas");
+          arrowIcon.classList.add("fa-arrow-right");
+          arrowIcon.classList.add("float-end");
+          arrowIcon.classList.add("mt-1");
+          li.appendChild(arrowIcon);
+          commandsList.appendChild(li);
+        });
+      };
+
+      const assignCommands = (analytics) => {
+        const WARNING_ICON = '<i class="fas fa-exclamation-triangle"></i>';
+        const DANGER_ICON = '<i class="fas fa-exclamation-circle"></i>';
+
+        const sections = [
+          {
+            id: "alertCommandsSection",
+            listId: "alertCommandsList",
+            data: analytics.warning_by.alert_list,
+            icon: WARNING_ICON,
+          },
+          {
+            id: "waitCommandsSection",
+            listId: "waitCommandsList",
+            data: analytics.warning_by.wait_list,
+            icon: WARNING_ICON,
+          },
+          {
+            id: "whileParamsEmptyCommandsSection",
+            listId: "whileParamsEmptyCommandsList",
+            data: analytics.danger_by.while_param_empty_list,
+            icon: DANGER_ICON,
+          },
+          {
+            id: "ifParamsEmptyCommandsSection",
+            listId: "ifParamsEmptyCommandsList",
+            data: analytics.danger_by.if_param_empty_list,
+            icon: DANGER_ICON,
+          },
+          {
+            id: "emptyIfCommandsSection",
+            listId: "emptyIfCommandsList",
+            data: analytics.danger_by.if_danger_list,
+            icon: DANGER_ICON,
+          },
+          {
+            id: "forParamsEmptyCommandsSection",
+            listId: "forParamsEmptyCommandsList",
+            data: analytics.danger_by.for_param_empty_list,
+            icon: DANGER_ICON,
+          },
+        ];
+
+        sections.forEach(({ id, listId, data, icon }) => {
+          const section = document.getElementById(id);
+          const list = document.getElementById(listId);
+
+          list.innerHTML = "";
+
+          if (data.length > 0) {
+            section.classList.remove("d-none");
+            createCommandListItems(data, icon, list);
+          } else {
+            section.classList.add("d-none");
+          }
+        });
+
+        const MAX_COMMANDS_WARNING_SECTION = document.getElementById(
+          "maxCommandsWarningSection"
+        );
+        const MAX_COMMANDS_DANGER_SECTION = document.getElementById(
+          "maxCommandsDangerSection"
+        );
+
+        const MAX_WARNING_LIST = analytics.warning_by.excess_commands;
+        const MAX_DANGER_LIST = analytics.danger_by.excess_commands;
+
+        if (MAX_WARNING_LIST && !MAX_DANGER_LIST) {
+          MAX_COMMANDS_WARNING_SECTION.classList.remove("d-none");
+        } else {
+          MAX_COMMANDS_WARNING_SECTION.classList.add("d-none");
+        }
+
+        if (MAX_DANGER_LIST) {
+          MAX_COMMANDS_DANGER_SECTION.classList.remove("d-none");
+          MAX_COMMANDS_WARNING_SECTION.classList.add("d-none");
+        } else {
+          MAX_COMMANDS_DANGER_SECTION.classList.add("d-none");
+          if (MAX_WARNING_LIST) {
+            MAX_COMMANDS_WARNING_SECTION.classList.remove("d-none");
+          }
+        }
+
+        const PYTHON_OVER_50_WARNING_SECTION = document.getElementById(
+          "pythonOver50WarningSection"
+        );
+        const PYTHON_OVER_50_WARNING_LIST =
+          analytics.warning_by.python_over_50_percent;
+        if (PYTHON_OVER_50_WARNING_LIST) {
+          PYTHON_OVER_50_WARNING_SECTION.classList.remove("d-none");
+        } else {
+          PYTHON_OVER_50_WARNING_SECTION.classList.add("d-none");
+        }
+      };
+
+      parent.postMessage({ type: "getAlertTexts" }, "*");
+      parent.postMessage({ type: "getAnalytics" }, "*");
+      setInterval(() => {
+        parent.postMessage({ type: "getAnalytics" }, "*");
+      }, 5000);
+
+      const eventMethod = window.addEventListener
+        ? "addEventListener"
+        : "attachEvent";
+      const eventer = window[eventMethod];
+      const messageEvent =
+        eventMethod === "attachEvent" ? "onmessage" : "message";
+      window.addEventListener(messageEvent, (e) => {
+        const data = e.data;
+        if (data.event === "getAlertTexts" && data.texts) {
+          assignTexts(data.texts);
+        }
+        if (data.event === "getAnalytics" && data.data) {
+          assignCommands(data.data);
+        }
+      });
+    };
+
+    document.addEventListener("DOMContentLoaded", onLoad);
+  </script>
+</html>

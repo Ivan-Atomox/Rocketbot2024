@@ -1,0 +1,20 @@
+<div class=""  ng-init="commands = item;ff = getFatherData(item); n = n +'-'">
+    <div class="can-click" ng-click="item.view = !item.view; view(item.id);view_item(item)">
+        
+        <img loading='lazy' src="{{ff.icon}}" class="tree-icon"><b>{{ff.title}} <small class="logical" ng-show="viewLogicals">{{item.command}}</small> <i class="fa " ng-class="{'fa-chevron-right': !item.view,'fa-chevron-down': item.view} "></i></b> <small class="description" ng-show="viewDescription && item.description">{{item.description}}</small>
+    </div>
+    <div class="tree_list">
+        <div class="ml-2 pb-1">
+            <div id="{{item.id}}" style="display: none;">
+                <div ng-repeat="item in bots[this.commands.id]">
+                    
+                    <ng-include ng-if="(item.group =='logic' && item.father!='break') || item.father == 'trycatch'" src="'/treeview/item_logic.html'"></ng-include>
+                    <ng-include ng-if="(item.group !='logic' && item.father != 'trycatch' && item.father != 'execRocketBotDB' && item.father != 'execRocketBotDBExpose' ) || item.father=='break'" src="'/treeview/item.html'"></ng-include>             
+                    <ng-include ng-if="(item.father == 'execRocketBotDB' || item.father == 'execRocketBotDBExpose')" src="'/treeview/item_robot.html'"></ng-include>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
